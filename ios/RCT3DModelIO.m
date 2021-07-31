@@ -5,7 +5,7 @@
 + (instancetype)sharedInstance {
     static RCT3DModelIO *instance = nil;
     static dispatch_once_t onceToken;
-    
+
     dispatch_once(&onceToken, ^{
         if (instance == nil) {
             instance = [[self alloc] init];
@@ -28,13 +28,13 @@
 
 - (NSURL *)urlFromPath:(NSString *)path {
     NSURL *url;
-    
+
     if ([path hasPrefix: @"/"]) {
         url = [NSURL fileURLWithPath: path];
     } else if ([path hasPrefix: @"http"]) {
         url = [NSURL URLWithString:path];
     }
-    
+
     return url;
 }
 
@@ -80,7 +80,7 @@
         NSLog(@"%@",[error localizedDescription]);
         return nil;
     }
-    
+
     SCNNode *node = [[SCNNode alloc] init];
     NSArray *nodeArray = [scene.rootNode childNodes];
     SCNMaterial *material;
@@ -101,7 +101,7 @@
     MDLMesh* object = (MDLMesh *)[asset objectAtIndex:0];
     MDLScatteringFunction *scatteringFunction = [MDLScatteringFunction new];
     MDLMaterial *material = [[MDLMaterial alloc] initWithName:@"baseMaterial" scatteringFunction:scatteringFunction];
-    MDLMaterialProperty* baseColor = [MDLMaterialProperty new];
+    MDLMaterialProperty* baseColor = [MDLMaterialProperty alloc];
     [baseColor setSemantic:MDLMaterialSemanticBaseColor];
     if (textureUrl) {
         [baseColor setType:MDLMaterialPropertyTypeTexture];
@@ -114,7 +114,7 @@
     for (MDLSubmesh* sub in object.submeshes) {
         sub.material = material;
     }
-    
+
     SCNNode *node = [SCNNode node];
     [node addChildNode:[SCNNode nodeWithMDLObject:object]];
     node.castsShadow = YES;
