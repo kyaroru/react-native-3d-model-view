@@ -1,11 +1,4 @@
-import ModelView from './lib/ModelView'
-import ARModelView from './lib/ARModelView'
-import Manager from './lib/Manager'
-import ARManager from './lib/ARManager'
+import ModelView from "./lib/ModelView";
+import Manager from "./lib/Manager";
 
-export {
-  ModelView,
-  ARModelView,
-  Manager,
-  ARManager
-}
+export { ModelView, Manager };
